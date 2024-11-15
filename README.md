@@ -1,0 +1,1 @@
+This repository contains comprehensive Node.js tutorials and content, curated by Piyush Garg. It also features a practical project: a URL shortener, showcasing the concepts learned throughout the course.
