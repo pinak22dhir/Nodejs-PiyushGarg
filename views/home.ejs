@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home page</title>
+    </head>
+    <body>
+        <h1>Hi from server</h1>
+        <h3>hi again</h3>
+        
+         <% if (urls && Array.isArray(urls)) { %>
+            <% urls.forEach(url => { %>
+                <li><%= url.shortid %></li>
+            <% }) %>
+        <% } else { %>
+            <p>No URLs available.</p>
+        <% } %> 
+        
+        <h1>Homepage</h1>
+        <h2>URL Shortener</h2>
+        <div> 
+             <% if (locals.id) { %>
+                <p>Url Generated: http://localhost:8003/url/<%= locals.id %></p>
+            <% } %> 
+        
+            <form method="POST" action="/url" >
+                <label>Enter your original URL</label>
+                <input
+                    type="text"
+                    name="url"
+                    placeholder="https://example.com" />
+                <button type="submit">Generate</button>
+            </form>
+        </div> 
+        
+        <h1>URLs List</h1>
+        <div>
+            <% if (locals.urls && locals.urls.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>ShortId</th>
+                            <th>Redirect</th>
+                            <th>Clicks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% locals.urls.forEach((url, index) => { %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+                                <td><%= url.shortid %></td>
+                                <td><%= url.redirecturl %></td>
+                                <td><%= url.visitHistory.length %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>No URLs generated yet.</p>
+            <% } %>
+        </div>
+    </body>
+</html>
